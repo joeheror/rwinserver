@@ -1,0 +1,84 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+          <div class="row">
+{#            <div class="col-md-6">#}
+{#              <div class="card">#}
+{#                <div class="card-header card-header-primary">#}
+{#                  <h4 class="card-title">Edit Profile</h4>#}
+{#                  <p class="card-category">Update your profile</p>#}
+{#                </div>#}
+{#                <div class="card-body">#}
+{#                  <form action="update-profile" method="post">#}
+{#                      {% csrf_token %}#}
+{#                    <div class="row">#}
+{#                      <div class="col-md-12">#}
+{#                        <div class="form-group">#}
+{#                          <label class="bmd-label-floating">Username</label>#}
+{#                          <input type="text" class="form-control" name="username" value="{{ request.user.username }}">#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>#}
+{#                    <div class="clearfix"></div>#}
+{#                  </form>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Change Password</h4>
+                  <p class="card-category">Change your password</p>
+                </div>
+                <div class="card-body">
+                  <form action="change-password" method="post">
+                      {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" class="form-control" name="password" value="">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password Confirmation</label>
+                          <input type="password" class="form-control" name="password_confirm" value="">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Set Password</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            {% if error != null %}
+                md.showErrorMessage("{{ error }}");
+            {% endif %}
+            {% if message != null %}
+                md.showSuccessMessage("{{ message }}");
+            {% endif %}
+        });
+
+    </script>
+{% endblock javascripts %}
+
+

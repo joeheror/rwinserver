@@ -1,0 +1,160 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">User Table</h4>
+                  <p class="card-category">Add/Enable/Diable/Remove Users</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input id="new_username" class="form-control" type="text" placeholder="User name" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input id="new_password" class="form-control" type="text" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-default" onclick="javascript: onAddUser();">Add User</button>
+                        </div>
+                    </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          State
+                        </th>
+                        <th>
+                          Enable/Disable
+                        </th>
+                        <th>
+                            Remove
+                        </th>
+                      </thead>
+                      <tbody id="table_body">
+                        {% for auser in user_list %}
+                        <tr id="user_{{ auser.id }}">
+                            <td>{{ auser.username }}</td>
+                            <td id="user_state_{{ auser.id }}">
+                                {% if auser.is_active %}
+                                    <i class="material-icons text-primary">done</i>
+                                {% else %}
+                                    <i class="material-icons text-dark">remove</i>
+                                {% endif %}
+                            </td>
+                            <td id="user_action_{{ auser.id }}">
+                                {% if auser.is_active %}
+                                    <button type="button" class="btn btn-primary" onclick="javascript: onDisableUser({{ auser.id }});">Disable</button>
+                                {% else %}
+                                    <button type="button" class="btn btn-dark" onclick="javascript: onEnableUser({{ auser.id }});">Enable</button>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info" onclick="javascript: onRemoveUser({{ auser.id }});">Remove</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% csrf_token %}
+          </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+
+        function onAddUser() {
+            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+            var username = $("#new_username").val();
+            var password = $("#new_password").val();
+
+            $.post("add-user", {username, password, csrfmiddlewaretoken}, function(res) {
+                if ( undefined === res['Success']) md.showErrorMessage(res);
+                else {
+                    var id = res['id'];
+                    var html = `<tr id="user_${ id }">
+                            <td>${ username }</td>
+                            <td id="user_state_${ id }">
+                                <i class="material-icons text-primary">done</i>
+                            </td>
+                            <td id="user_action_${ id }">
+                                <button type="button" class="btn btn-primary" onclick="javascript: onDisableUser(${ id });">Disable</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info" onclick="javascript: onRemoveUser(${ id });">Remove</button>
+                            </td>
+                        </tr>`;
+
+                    $("#table_body").append( html);
+                }
+            })
+        }
+
+        function onRemoveUser(userId) {
+            if ( !confirm("Do you really want to remove the user?"))
+                return ;
+
+            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+            $.post("remove-user", {userId, csrfmiddlewaretoken}, function(res) {
+                if ( "Success" != res) md.showErrorMessage(res);
+                else {
+                    $("#user_" + userId).remove()
+                }
+            })
+        }
+
+        function onEnableUser(userId) {
+            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+            $.post("enable-user", {userId, csrfmiddlewaretoken}, function(res) {
+                if ( "Success" != res) md.showErrorMessage(res);
+                else {
+                    $("#user_state_" + userId).html("<i class=\"material-icons text-primary\">done</i>");
+                    $("#user_action_" + userId).html("<button type=\"button\" class=\"btn btn-primary\" onclick=\"javascript: onDisableUser(" + userId + ");\">Disable</button>")
+                }
+            })
+        }
+
+        function onDisableUser(userId) {
+            var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
+            $.post("disable-user", {userId, csrfmiddlewaretoken}, function (res) {
+                if ("Success" != res) md.showErrorMessage(res);
+                else {
+                    $("#user_state_" + userId).html("<i class=\"material-icons text-dark\">remove</i>");
+                    $("#user_action_" + userId).html("<button type=\"button\" class=\"btn btn-dark\" onclick=\"javascript: onEnableUser(" + userId + ");\">Enable</button>")
+                }
+            })
+        }
+
+        $(document).ready(function() {
+            {% if error != null %}
+                md.showErrorMessage("{{ error }}");
+            {% endif %}
+            {% if message != null %}
+                md.showSuccessMessage("{{ message }}");
+            {% endif %}
+        });
+
+    </script>
+{% endblock javascripts %}
+
+
