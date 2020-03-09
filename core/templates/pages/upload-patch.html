@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Upload Patch {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title ">Upload File</h4>
+          <p class="card-category">Upload File to Patch</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/do-upload" method="post" onsubmit="return onSubmitForm();" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="service" value="{{ service }}"/>
+                        <input type="file" name="src_file" id="src_file" class="form-control" onchange="onChangeFile();"/>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% csrf_token %}
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        function onChangeFile()
+        {
+            if ( !$("#src_file").val().toLowerCase().endsWith(".exe")) {
+                alert( "Select Executable File");
+                $("#src_file").val("");
+            }
+        }
+
+        function onSubmitForm()
+        {
+            if ( "" === $("#src_file").val()) {
+                alert("Select File");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock javascripts %}
+
+

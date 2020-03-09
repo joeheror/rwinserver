@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Page User {% endblock %} 
+{% block title %} Patch Management {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -8,55 +8,46 @@
 {% block content %}
 
   <div class="row">
-      {% if exist == True %}
-
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-header card-header-warning card-header-icon">
-            <div class="card-icon">
-              <i class="material-icons">cloud_download</i>
+      <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Patch Service List</h4>
+              <p class="card-category">You can manage patch files here.</p>
             </div>
-            <p class="card-category">RunningWin Download</p>
-            <h3 class="card-title">Updated on <span class="text-primary">{{ update_time }}</span>
-            </h3>
-          </div>
-          <div class="card-footer">
-            <div class="stats">
-              <i class="material-icons text-danger">cloud_download</i>
-              <a href="download-patch">Download patch file</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {% endif %}
-
-      {% if user.is_superuser == 1 %}
-
-      <div class="col-lg-6 col-md-6 col-sm-12">
-          <form action="upload-patch" method="post" name="upload_form" enctype="multipart/form-data">
-              {% csrf_token %}
-            <div class="card card-stats">
-              <div class="card-header card-header-success card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">cloud_upload</i>
-                </div>
-                <p class="card-category">RunningWin Upload</p>
-                <h3 class="card-title">
-                    <input type="file" id="patch_file" name="patch_file"/>
-                </h3>
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-danger">cloud_upload</i>
-                  <a href="javascript: onUploadFile();">Upload patch file</a>
-                </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>No.</th>
+                    <th>Service</th>
+                    <th>Last Update</th>
+                    <th>Download</th>
+                    {% if user.is_superuser %}
+                        <th>Upload</th>
+                    {% endif %}
+                  </thead>
+                  <tbody>
+                    {% for patch in patches %}
+                        <tr>
+                            <td>{{ forloop.counter }}.</td>
+                            <td>{{ patch.title }}</td>
+                            <td>{{ patch.last_update }}</td>
+                            <td>
+                                {% if "" != patch.last_update %}
+                                    <a href="download-patch/{{ patch.url }}"><i class="material-icons text-danger">cloud_download</i></a>
+                                {% endif %}
+                            </td>
+                            {% if user.is_superuser %}
+                                <td><a href="upload-page/{{ patch.url }}"><i class="material-icons">cloud_upload</i></a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
             </div>
-          </form>
-      </div>
-
-    {% endif %}
+          </div>
+    </div>
 
   </div>
 
@@ -65,20 +56,6 @@
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
     <script>
-        function onUploadFile() {
-            file_path = $("#patch_file").val();
-            if ( "" == file_path) {
-                alert("Select file");
-                return ;
-            }
-
-            if ( !file_path.endsWith( ".exe")) {
-                alert("Select EXE file");
-                return ;
-            }
-
-            upload_form.submit();
-        }
     </script>
 {% endblock javascripts %}
 

@@ -12,8 +12,10 @@ from django.contrib.auth.models import User
 from django.db import Error
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.utils.encoding import smart_str
+
+from app.config import MyConfig
 
 
 @login_required(login_url="/login/")
@@ -67,20 +69,38 @@ def change_password(request):
 
 @login_required(login_url='/login')
 def patch(request):
-    context = {"page": "patch"}
+    context = {"page": "patch", "patches": []}
 
-    if not os.path.exists("upload/patch.exe"):
-        context['exist'] = False
-    else:
-        context['exist'] = True
-        update_time = os.path.getmtime("upload/patch.exe")
-        context['update_time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(update_time))
+    for key in MyConfig.patch_list:
+        data = MyConfig.patch_list[key]
+        data["url"] = key
+
+        file_path = MyConfig.patch_path + data["file_name"]
+
+        if not os.path.exists(file_path):
+            data["last_update"] = ""
+        else:
+            data["last_update"] = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime(os.path.getmtime(file_path)))
+
+        context["patches"].append(data)
 
     template = loader.get_template("pages/patch.html")
     return HttpResponse(template.render(context, request))
 
 
-def download_patch(request):
+@login_required(login_url="/login")
+def upload_page(request, service):
+    context = {"patge": "patch"}
+
+    if not request.user.is_superuser:
+        context["error"] = "Only administrator can upload"
+        return HttpResponse(loader.get_template("pages/patch.html").render(context, request))
+
+    context["service"] = service
+    return HttpResponse(loader.get_template("pages/upload-patch.html").render(context, request))
+
+
+def download_patch(request, service):
     if not request.user.is_authenticated:
         try:
             username = request.GET['username']
@@ -99,23 +119,38 @@ def download_patch(request):
         if not check_password(password, user.password):
             return HttpResponse("Credential not correct")
 
-    if not os.path.exists("upload/patch.exe"):
+    if service not in MyConfig.patch_list.keys():
+        return HttpResponse("Service not found")
+
+    file_path = MyConfig.patch_path + MyConfig.patch_list[service]["file_name"]
+
+    if not os.path.exists(file_path):
         return HttpResponse("Patch not exists")
 
-    with open("upload/patch.exe", 'rb') as f:
+    with open(file_path, 'rb') as f:
         response = HttpResponse(f.read(), content_type='application/force-download')
-        response['Content-Disposition'] = 'attachment; filename=RunningWin2.exe'
-        response['X-Sendfile'] = smart_str("upload/patch.exe")
+        response['Content-Disposition'] = 'attachment; filename=' + MyConfig.patch_list[service]["file_name"]
     return response
 
 
-@login_required(login_url='/login')
-def upload_patch(request):
-    file = request.FILES['patch_file']
-    print("Upload File", file)
-    with open('upload/patch.exe', 'wb+') as dest:
+@login_required(login_url="/login")
+def do_upload(request):
+
+    if not request.user.is_superuser:
+        return HttpResponseBadRequest("")
+
+    service = request.POST['service']
+    file = request.FILES['src_file']
+
+    if service not in MyConfig.patch_list.keys():
+        return HttpResponseBadRequest("")
+
+    file_path = MyConfig.patch_path + MyConfig.patch_list[service]["file_name"]
+
+    with open( file_path, 'wb+') as dest:
         for chunk in file.chunks():
             dest.write(chunk)
+
     return HttpResponseRedirect("/patch")
 
 
