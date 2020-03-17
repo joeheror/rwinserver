@@ -129,6 +129,19 @@ def download_patch(request, service):
     if not os.path.exists(file_path):
         return HttpResponse("Patch not exists")
 
+    try:
+        update_time = request.GET['update']
+        local_time = time.localtime(os.path.getmtime(file_path))
+        time_str = str(local_time.tm_year) + "_" + str(local_time.tm_mon) + "_" + str(local_time.tm_mday)
+
+        print(time_str)
+
+        if time_str == update_time:
+            return HttpResponse("Already Updated")
+
+    except KeyError:
+        pass
+
     with open(file_path, 'rb') as f:
         response = HttpResponse(f.read(), content_type='application/force-download')
         response['Content-Disposition'] = 'attachment; filename=' + MyConfig.patch_list[service]["file_name"]
