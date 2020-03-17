@@ -24,6 +24,7 @@ urlpatterns = [
     path('add-user', views.add_user),
     path('patch', views.patch),
     path('do-upload', views.do_upload),
+    path('do-secure-upload', views.software_upload),
     re_path(r'download-patch/(?P<service>[A-Za-z0-9]+)/$', views.download_patch),
     re_path(r'upload-page/(?P<service>[A-Za-z0-9]+)/$', views.upload_page),
 ]

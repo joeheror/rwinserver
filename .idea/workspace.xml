@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7555b55c-ee76-4d9e-8e37-88eae5e50450" name="Default Changelist" comment="" />
+    <list default="true" id="7555b55c-ee76-4d9e-8e37-88eae5e50450" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,17 +29,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+            <state relative-caret-position="375">
+              <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+              <folding>
+                <element signature="e#95#104#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="315">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -45,11 +61,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+            <state relative-caret-position="229">
+              <caret line="137" column="27" lean-forward="true" selection-start-line="137" selection-start-column="27" selection-end-line="137" selection-end-column="27" />
               <folding>
                 <element signature="e#87#96#0" expanded="true" />
               </folding>
@@ -69,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/templates/includes/sidebar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+            <state relative-caret-position="900">
+              <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -111,9 +127,9 @@
         <option value="$PROJECT_DIR$/core/urls.py" />
         <option value="$PROJECT_DIR$/core/templates/pages/patch.html" />
         <option value="$PROJECT_DIR$/core/templates/pages/upload-patch.html" />
+        <option value="$PROJECT_DIR$/core/templates/includes/sidebar.html" />
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/core/templates/includes/sidebar.html" />
       </list>
     </option>
   </component>
@@ -128,6 +144,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,64 +155,12 @@
             <path>
               <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
               <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
               <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RunningWin_Django" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RunningWin_Django" type="b2602c69:ProjectViewProjectNode" />
@@ -206,7 +171,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,17 +241,19 @@
       <workItem from="1583519856649" duration="11257000" />
       <workItem from="1583688271983" duration="2304000" />
       <workItem from="1583792522927" duration="4220000" />
+      <workItem from="1583895129480" duration="1193000" />
+      <workItem from="1584433176405" duration="1674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53313000" />
+    <option name="totallyTimeSpent" value="56180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="993" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25772098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2630458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -509,16 +475,6 @@
     <entry file="file://$PROJECT_DIR$/core/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="73" column="16" lean-forward="true" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
-          <folding>
-            <element signature="e#95#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -574,6 +530,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/pages/patch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
@@ -581,12 +544,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/patch/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/pages/upload-patch.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -597,35 +556,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/templates/includes/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        <state relative-caret-position="900">
+          <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="e#95#104#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        <state relative-caret-position="229">
+          <caret line="137" column="27" lean-forward="true" selection-start-line="137" selection-start-column="27" selection-end-line="137" selection-end-column="27" />
           <folding>
             <element signature="e#87#96#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/patch/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

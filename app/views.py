@@ -13,7 +13,9 @@ from django.db import Error
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
+from django.views.decorators.csrf import csrf_exempt
 
 from app.config import MyConfig
 
@@ -131,6 +133,24 @@ def download_patch(request, service):
         response = HttpResponse(f.read(), content_type='application/force-download')
         response['Content-Disposition'] = 'attachment; filename=' + MyConfig.patch_list[service]["file_name"]
     return response
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+def software_upload(request):
+
+    service = request.POST['service']
+    file = request.FILES['src_file']
+
+    if service not in MyConfig.patch_list.keys():
+        return HttpResponseBadRequest("")
+
+    file_path = MyConfig.patch_path + MyConfig.patch_list[service]["file_name"]
+
+    with open( file_path, 'wb+') as dest:
+        for chunk in file.chunks():
+            dest.write(chunk)
+
+    return HttpResponse("OK")
 
 
 @login_required(login_url="/login")
