@@ -123,7 +123,7 @@ def download_patch(request, service):
             return HttpResponse("Credential not correct")
 
         if not user.is_active:
-            return HttpResponse("Credential is disabled")
+            return HttpResponse(user.username + " has been disabled")
 
     if service not in MyConfig.patch_list.keys():
         return HttpResponse("Service not found")
